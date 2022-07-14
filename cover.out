@@ -1,0 +1,5 @@
+mode: set
+github.com/Rosaniline/gorm-ut/pkg/model/person.go:10.37,12.2 1 1
+github.com/Rosaniline/gorm-ut/pkg/repository/person.go:18.56,24.2 2 1
+github.com/Rosaniline/gorm-ut/pkg/repository/person.go:26.57,32.2 3 1
+github.com/Rosaniline/gorm-ut/pkg/repository/person.go:34.47,38.2 1 1
