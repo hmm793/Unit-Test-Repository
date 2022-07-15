@@ -57,11 +57,9 @@ func TestInit(t *testing.T) {
 
 func (s *Suite) Test_repository_Create() {
 	var (
-		id = uuid.NewV4()
-		// id   = 1
+		id   = uuid.NewV4()
 		name = "test-name"
 	)
-
 	s.mock.ExpectExec(regexp.QuoteMeta(
 		`INSERT INTO "person"`)).
 		WithArgs(id, name).
@@ -69,6 +67,37 @@ func (s *Suite) Test_repository_Create() {
 			sqlmock.NewResult(1, 1))
 
 	err := s.repository.Create(id, name)
+
+	require.NoError(s.T(), err)
+}
+func (s *Suite) Test_repository_Delete() {
+	var (
+		id = uuid.NewV4()
+	)
+
+	s.mock.ExpectExec(regexp.QuoteMeta(
+		`DELETE FROM "person"`)).
+		WithArgs(id).
+		WillReturnResult(
+			sqlmock.NewResult(1, 1))
+
+	err := s.repository.Delete(id)
+
+	require.NoError(s.T(), err)
+}
+func (s *Suite) Test_repository_Update() {
+	var (
+		id   = uuid.NewV4()
+		name = "test-name"
+	)
+
+	s.mock.ExpectExec(regexp.QuoteMeta(
+		`UPDATE "person"`)).
+		WithArgs(name, id).
+		WillReturnResult(
+			sqlmock.NewResult(1, 1))
+
+	err := s.repository.Update(id, name)
 
 	require.NoError(s.T(), err)
 }
